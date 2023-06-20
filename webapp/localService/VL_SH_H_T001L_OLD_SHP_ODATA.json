@@ -1,0 +1,17 @@
+[{
+	"WERKS": "1000",
+	"LGORT": "0001",
+	"LGOBE": "Storage Location 1"
+}, {
+	"WERKS": "1000",
+	"LGORT": "0002",
+	"LGOBE": "Storage Location 2"
+}, {
+	"WERKS": "2000",
+	"LGORT": "0003",
+	"LGOBE": "Storage Location 3"
+}, {
+	"WERKS": "2000",
+	"LGORT": "0004",
+	"LGOBE": "Storage Location 4"
+}]

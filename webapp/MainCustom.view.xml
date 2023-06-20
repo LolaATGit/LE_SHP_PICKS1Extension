@@ -1,0 +1,8 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="i2d.le.delivery.pick.s1.Main" displayBlock="true" height="100%">
+	<App id="fioriContent"></App>
+</mvc:View>

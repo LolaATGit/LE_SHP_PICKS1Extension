@@ -1,0 +1,15 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:ca="sap.ca.ui"
+	controllerName="i2d.le.delivery.pick.s1.view.OutputManagement">
+	<Page id="page">
+		<content>
+			<layout:Grid defaultSpan="L12 M12 S12" width="auto">
+				<mvc:ComponentContainer id="PickDeliveryOutputContainer"/>
+			</layout:Grid>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,413 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:ca="sap.ca.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="i2d.le.delivery.pick.s1.view.S1">
+	<Page id="S1PickDeliveryPage">
+		<content>
+			<layout:form.SimpleForm layout="ResponsiveGridLayout" minWidth="1024" maxContainerCols="2" editable="true" labelSpanL="3" labelSpanM="4"
+				emptySpanL="3" emptySpanM="2" columnsL="1" columnsM="3">
+				<layout:content>
+					<!-- Extends the Simple Form to add additional content -->
+					<mvc:ExtensionPoint name="extS1SimpleFormTop"/>
+					<Label id="S1PickDeliveryLabel" text="{/#DeliveryHeader/DeliveryID/@sap:label}" tooltip="{/#DeliveryHeader/DeliveryID/@sap:label}"/>
+					<Input id="S1ReferenceDocumentInput" change="onRefDocChanged" showValueHelp="true" valueHelpRequest="onRegisterVHDialog" maxLength="10"/>
+					<!-- Extends the Simple Form to add additional content -->
+					<mvc:ExtensionPoint name="extS1SimpleFormBottom"/>
+				</layout:content>
+			</layout:form.SimpleForm>
+			<MessagePage id="S1MessagePage" showHeader="false" visible="true" icon="sap-icon://Fiori6/F0868"
+				text="{i18n>MESSAGE_PAGAE_SEARCH_HINT_TEXT}" description=""/>
+			<VBox id="S1ContentBox" visible="false">
+				<!-- Header -->
+				<!--<ObjectHeader-->
+				<!--	id="S1ObjectHeader"-->
+				<!--	titleActive="{path:'DocumentType', formatter:'i2d.le.delivery.pick.s1.util.formatter.setLinkEnabledStatus'}" -->
+				<!--	titlePress="onNavToDeliveryObjectPage"-->
+				<!--	app:docType="{DocumentType}"-->
+				<!--	app:dlvID="{DeliveryID}"/>-->
+				<ObjectHeader id="S1ObjectHeader" title="{i18n>DELIVERY_OBJECT_HEADER_TITLE}" tooltip="{i18n>DELIVERY_OBJECT_HEADER_TITLE}">
+					<attributes>
+						<ObjectAttribute title="{i18n>LABEL_OUT_DELIVERY}" text="{DeliveryID}" tooltip="{DeliveryID}" app:docType="{DocumentType}"
+							active="{path:'DocumentType', formatter:'i2d.le.delivery.pick.s1.util.formatter.setLinkEnabledStatus'}" press="onNavToDeliveryObjectPage"/>
+					</attributes>
+				</ObjectHeader>
+				<items>
+					<layout:form.SimpleForm layout="ResponsiveGridLayout" id="S1DeliveryHeaderSimpleForm" minWidth="900" maxContainerCols="3" editable="true">
+						<layout:content>
+							<!-- Extends the Second Simple Form to add additional content -->
+							<mvc:ExtensionPoint name="extS1DeliveryHeaderSimpleFormTop"/>
+							<Label id="S1HeaderGIActualDateLabel" text="{path:'DocumentType', formatter:'i2d.le.delivery.pick.s1.util.formatter.setActualDateLabel'}"
+								tooltip="{path:'DocumentType', formatter:'i2d.le.delivery.pick.s1.util.formatter.setActualDateLabel'}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<DatePicker id="S1ActualGIDatePicker"
+								value="{path:'GoodsIssueActualDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true} }" change="onGIDateChanged"
+								editable="{FieldControl>/InputEditable}">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</DatePicker>
+							<Label id="S1HeaderGrossWeightLabel" text="{/#DeliveryHeader/DeliveryGrossWeightQuantity/@sap:label}"
+								tooltip="{/#DeliveryHeader/DeliveryGrossWeightQuantity/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderGrossWeightQuantityInput" editable="{FieldControl>/InputEditable}"
+								value="{parts:[{path: 'DeliveryGrossWeightQuantity'}, {path: 'DeliveryGrossWeightUoMCode'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatSimpleFormQuantityField'}"
+								change="onHeaderQuantityChanged" textAlign="Right" maxLength="21">
+								<layoutData>
+									<layout:GridData span="{= ${FieldControl>/InputEditable} === true ? 'L2 M2' : 'L4 M4' }"/>
+								</layoutData>
+							</Input>
+							<Input id="S1HeaderGrossWeightUoMInput" value="{DeliveryGrossWeightUoMCode}" editable="{FieldControl>/InputEditable}"
+								visible="{FieldControl>/InputEditable}" showValueHelp="true" valueHelpRequest="onRegisterVHDialog" change="onDeliveryHeaderUoMChange">
+								<layoutData>
+									<layout:GridData span="L2 M2" visibleS="{FieldControl>/InputEditable}" visibleM="{FieldControl>/InputEditable}"
+										visibleL="{FieldControl>/InputEditable}" visibleXL="{FieldControl>/InputEditable}"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderGIPlanDateLabel"
+								text="{parts:[{path:'/#DeliveryHeader/GoodsIssuePlanDate/@sap:label'}, {path:'DocumentType'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.setPlanDateLabel'}"
+								tooltip="{parts:[{path:'/#DeliveryHeader/GoodsIssuePlanDate/@sap:label'}, {path:'DocumentType'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.setPlanDateLabel'}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderGIPlanDateText" editable="false"
+								value="{path:'GoodsIssuePlanDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true} }">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderNetWeightLabel" text="{/#DeliveryHeader/DeliveryNetWeightQuantity/@sap:label}"
+								tooltip="{/#DeliveryHeader/DeliveryNetWeightQuantity/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderNetWeightQuantityInput" editable="{FieldControl>/InputEditable}"
+								value="{parts:[{path: 'DeliveryNetWeightQuantity'}, {path: 'DeliveryGrossWeightUoMCode'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatSimpleFormQuantityField'}"
+								change="onHeaderQuantityChanged" textAlign="Right" maxLength="21">
+								<layoutData>
+									<layout:GridData span="{= ${FieldControl>/InputEditable} === true ? 'L2 M2' : 'L4 M4' }"/>
+								</layoutData>
+							</Input>
+							<Input id="S1HeaderNetWeightUoMInput" value="{DeliveryGrossWeightUoMCode}" editable="false" visible="{FieldControl>/InputEditable}">
+								<layoutData>
+									<layout:GridData span="L2 M2" visibleS="{FieldControl>/InputEditable}" visibleM="{FieldControl>/InputEditable}"
+										visibleL="{FieldControl>/InputEditable}" visibleXL="{FieldControl>/InputEditable}"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderPickingDateLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/PickingDate/@sap:label}"
+								tooltip="{/#DeliveryHeader/PickingDate/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderPickingDateText" visible="{FieldControl>/HeaderExpanded}" editable="false"
+								value="{path:'PickingDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true} }">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderVolumeLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/VolumeQuantity/@sap:label}"
+								tooltip="{/#DeliveryHeader/VolumeQuantity/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderVolumeQuantityInput" visible="{FieldControl>/HeaderExpanded}" editable="{FieldControl>/InputEditable}"
+								value="{parts:[{path: 'VolumeQuantity'}, {path: 'VolumeUoMCode'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatSimpleFormQuantityField'}"
+								change= "onHeaderQuantityChanged" textAlign="Right" maxLength="21">
+								<layoutData>
+									<layout:GridData span="{= ${FieldControl>/InputEditable} === true ? 'L2 M2' : 'L4 M4' }"/>
+								</layoutData>
+							</Input>
+							<Input id="S1HeaderVolumeUoMInput"
+								visible="{parts:[{path:'FieldControl>/HeaderExpanded'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatVolumeUomVisibility'}"
+								value="{VolumeUoMCode}" editable="{FieldControl>/InputEditable}" showValueHelp="true" valueHelpRequest="onRegisterVHDialog"
+								change="onDeliveryHeaderUoMChange">
+								<layoutData>
+									<layout:GridData span="L2 M2" visibleS="{FieldControl>/InputEditable}" visibleM="{FieldControl>/InputEditable}"
+										visibleL="{FieldControl>/InputEditable}" visibleXL="{FieldControl>/InputEditable}"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderLoadingDateLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/LoadingDate/@sap:label}"
+								tooltip="{/#DeliveryHeader/LoadingDate/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderLoadingDateText" visible="{FieldControl>/HeaderExpanded}" editable="false"
+								value="{path:'LoadingDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true} }">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderPriorityLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/DeliveryPriorityName/@sap:label}"
+								tooltip="{/#DeliveryHeader/DeliveryPriorityName/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderPriorityText" visible="{FieldControl>/HeaderExpanded}" editable="false" value="{DeliveryPriorityName}">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderDeliveryDateLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/DeliveryDate/@sap:label}"
+								tooltip="{/#DeliveryHeader/DeliveryDate/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderDeliveryDateText" visible="{FieldControl>/HeaderExpanded}" editable="false"
+								value="{path:'DeliveryDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true} }">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderShippingPointLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/ShippingPointName/@sap:label}"
+								tooltip="{/#DeliveryHeader/ShippingPointName/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderShippingPointText" visible="{FieldControl>/HeaderExpanded}" editable="false"
+								value="{parts:[{path:'ShippingPointName'}, {path:'ShippingPointCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateNameId'}">
+								<layoutData>
+									<layout:GridData span="L4 M4"/>
+								</layoutData>
+							</Input>
+							<Label text="">
+								<layoutData>
+									<layout:GridData span="L6 M6"/>
+								</layoutData>
+							</Label>
+							<Text text="">
+								<layoutData>
+									<layout:GridData span="L6 M6"/>
+								</layoutData>
+							</Text>
+							<Label id="S1HeaderPickingStatusLabel" text="{/#DeliveryHeader/DeliveryPickingStatusName/@sap:label}"
+								tooltip="{/#DeliveryHeader/DeliveryPickingStatusName/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderPickingStatusText" value="{DeliveryPickingStatusName}" editable="false">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderConfirmationStatusLabel" text="{/#DeliveryHeader/DeliveryConfirmationStatusName/@sap:label}"
+								tooltip="{/#DeliveryHeader/DeliveryConfirmationStatusName/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderConfirmationStatusText" value="{DeliveryConfirmationStatusName}" editable="false">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderGIStatusLabel" visible="{FieldControl>/HeaderExpanded}"
+								text="{parts:[{path:'/#DeliveryHeader/DeliveryGoodsIssueStatusName/@sap:label'}, {path:'DocumentType'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.setGIStatusLabel'}"
+								tooltip="{parts:[{path:'/#DeliveryHeader/DeliveryGoodsIssueStatusName/@sap:label'}, {path:'DocumentType'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.setGIStatusLabel'}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderGIStatusText" visible="{FieldControl>/HeaderExpanded}" editable="false" value="{DeliveryGoodsIssueStatusName}">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderShipToPartyLabel" visible="{FieldControl>/HeaderExpanded}" text="{/#DeliveryHeader/ShipToPartyName/@sap:label}"
+								tooltip="{/#DeliveryHeader/ShipToPartyName/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderShipToPartyText" visible="{FieldControl>/HeaderExpanded}" editable="false"
+								value="{parts:[{path:'ShipToPartyName'}, {path:'ShipToPartyID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateNameId'}">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Input>
+							<Label id="S1HeaderShipToPartyAddressLabel" visible="{FieldControl>/HeaderExpanded}"
+								text="{/#DeliveryHeader/ShipToPartyAddressString/@sap:label}" tooltip="{/#DeliveryHeader/ShipToPartyAddressString/@sap:label}">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Input id="S1HeaderShipToPartyAddressText" visible="{FieldControl>/HeaderExpanded}" value="{ShipToPartyAddressString}" editable="false">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Input>
+							<Label text="">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Link visible="{FieldControl>/HeaderNotExpanded}" id="S1HeaderShowMoreLink" text="{i18n>LINK_SHOW_MORE}" tooltip="{i18n>LINK_SHOW_MORE}"
+								press="handleHeaderVisibility">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Link>
+							<Label text="">
+								<layoutData>
+									<layout:GridData span="L2 M2"/>
+								</layoutData>
+							</Label>
+							<Link visible="{FieldControl>/HeaderExpanded}" id="S1HeaderShowLessLink" text="{i18n>LINK_SHOW_LESS}" tooltip="{i18n>LINK_SHOW_LESS}"
+								press="handleHeaderVisibility">
+								<layoutData>
+									<layout:GridData span="L10 M10"/>
+								</layoutData>
+							</Link>
+							<mvc:ExtensionPoint name="extS1DeliveryHeaderSimpleFormBottom"/>
+						</layout:content>
+					</layout:form.SimpleForm>
+					<IconTabBar id="S1TabBar" expandable="false" applyContentPadding="false" select="handelIconTabSelect">
+						<items>
+							<!-- Extends the Tab Bar to add additional content -->
+							<mvc:ExtensionPoint name="extS1TabBarTop"/>
+							<IconTabFilter id="S1DeliveryItemsTab" key="DeliveryItems" design="Horizontal" icon="sap-icon://supplier" text="{i18n>PICK_TAB_TEXT}"
+								tooltip="{i18n>PICK_TAB_TEXT}">
+								<content>
+									<Table id="S1DeliveryItemsTable" inset="true" width="auto" fixedLayout="true" mode="MultiSelect" items="{DeliveryItems}"
+										selectionChange="handleTableLineSelect" updateFinished="prepareInputSuggest" showSeparators="Inner">
+										<headerToolbar>
+											<Toolbar>
+												<Title id="S1DeliveryItemsCount" text="{i18n>TABLE_DEL_ITEM}"/>
+											</Toolbar>
+										</headerToolbar>
+										<columns>
+											<Column width="5%" id="S1DeliveryItemsTableItemColumn" minScreenWidth="Desktop" demandPopin="true">
+												<Text text="{/#DeliveryItem/ItemID/@sap:label}" tooltip="{/#DeliveryItem/ItemID/@sap:label}"/>
+											</Column>
+											<Column id="S1DeliveryItemsTableMaterialColumn" minScreenWidth="Desktop" demandPopin="true">
+												<Text text="{i18n>MATERIAL_COLUMN_LABEL}" tooltip="{i18n>MATERIAL_COLUMN_LABEL}"/>
+											</Column>
+											<Column id="S1DeliveryItemsTableSalesQuanColumn" width="18%" minScreenWidth="Desktop" demandPopin="true">
+												<Text id="S1DeliveryItemsTableSalesQuanLabel" text="{/#DeliveryItem/DeliveryQuantityInSalesUoM/@sap:label}"
+													tooltip="{/#DeliveryItem/DeliveryQuantityInSalesUoM/@sap:label}"/>
+											</Column>
+											<Column id="S1DeliveryItemsTablePickQuanColumn" width="15%" minScreenWidth="Desktop" demandPopin="true">
+												<Text text="{/#DeliveryItem/PickedQuantity/@sap:label}" tooltip="{/#DeliveryItem/PickedQuantity/@sap:label}"/>
+											</Column>
+											<Column width="8%" id="S1DeliveryItemsTableSerNumStatColumn" minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+												<Text text="{i18n>SN_STATUS_COLUMN_LABEL}" tooltip="{i18n>SN_STATUS_COLUMN_LABEL}"/>
+											</Column>
+											<Column width="8%" id="S1DeliveryItemsTablePickStatColumn" minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+												<Text text="{/#DeliveryItem/ItemPickingStatusCode/@sap:label}" tooltip="{/#DeliveryItem/ItemPickingStatusCode/@sap:label}"/>
+											</Column>
+											<Column width="8%" id="S1DeliveryItemsTableConfStatColumn" minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+												<Text text="{/#DeliveryItem/ItemConfirmationStatusCode/@sap:label}" tooltip="{/#DeliveryItem/ItemConfirmationStatusCode/@sap:label}"/>
+											</Column>
+											<Column width="10%" id="S1DeliveryItemsTableOutputColumn" minScreenWidth="Desktop" demandPopin="true" hAlign="Right"></Column>
+											<!-- Extends the table to add additional columns -->
+											<mvc:ExtensionPoint name="extS1DeliveryItemsColumn"/>
+										</columns>
+										<items>
+											<ColumnListItem vAlign="Middle" type="Navigation" press="handleTableItemPress">
+												<cells>
+													<Text text="{ItemID}"/>
+													<Link text="{parts:[{path: 'ItemName'}, {path:'MaterialID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatMaterial'}"
+														enabled="{path:'ItemID', formatter:'i2d.le.delivery.pick.s1.util.formatter.setMaterialLinkEnabledStatus'}" press="onNavToMaterialObjectPage"
+														app:materialID="{MaterialID}"
+														tooltip="{parts:[{path: 'ItemName'}, {path:'MaterialID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatMaterial'}"/>
+													<HBox id="S1DeliveryQuantityBox">
+														<Input id="S1DeliveryQuantityInput" change="onItemQuantityChanged" editable="{FieldControl>/InputEditable}" textAlign="Right"
+															value="{parts:[{path:'DeliveryQuantityInSalesUoM'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatQuantity'}" maxLength="21"
+															ariaLabelledBy="S1DeliveryItemsTableSalesQuanLabel"></Input>
+														<Input id="S1DeliveryItemTableSalesUoMCodeInput" width="50%"
+															editable="{parts:[{path:'FieldControl>/InputEditable'}, {path:'PickedQuantity'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatUoMCodeInput'}"
+															suggest="onInputSuggest" showSuggestion="true" value="{DeliveryQuantitySalesUoMCode}" showValueHelp="true"
+															valueHelpRequest="onRegisterVHDialog" maxLength="3" ariaLabelledBy="S1DeliveryQuantityUnitLabel" class="sapUiSmallMarginBegin"></Input>
+													</HBox>
+													<Input id="S1PickedQuantityInput" change="onItemQuantityChanged" textAlign="Right"
+														editable="{parts:[{path: 'FieldControl>/PickedQuantityEditable'},{path: 'ItemPickingStatusCode'}], formatter: 'i2d.le.delivery.pick.s1.util.formatter.formatPickQuantityEditable'}"
+														value="{path:'PickedQuantity', formatter:'i2d.le.delivery.pick.s1.util.formatter.formatQuantity'}" description="{PickedQuantityUoMCode}"
+														maxLength="21"/>
+													<mvc:Icon decorative="false"
+														src="{parts:[{path: 'SerialNrRelevance'},{path: 'SerialNumberCount'},{path: 'DeliveryQuantityInBaseUoM'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatSNStatus'}"/>
+													<mvc:Icon tooltip="{ItemPickingStatusName}" decorative="false"
+														src="{path:'ItemPickingStatusCode', formatter:'i2d.le.delivery.pick.s1.util.formatter.formatStatusIcon'}"/>
+													<mvc:Icon tooltip="{ItemConfirmationStatusName}" decorative="false"
+														src="{path:'ItemConfirmationStatusCode', formatter:'i2d.le.delivery.pick.s1.util.formatter.formatStatusIcon'}"/>
+													<Button text="{i18n>ITEM_PRINT}" tooltip="{i18n>ITEM_PRINT}" press="navToItemOutputMgmt"
+														enabled="{path:'NumberOfOutputs', formatter:'i2d.le.delivery.pick.s1.util.formatter.formatItemOutputButtonEnabled'}"/>
+													<!-- Extends the table to add additional columns -->
+													<mvc:ExtensionPoint name="extS1DeliveryItemsColumnListItem"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+									<mvc:InvisibleText id="S1DeliveryQuantityUnitLabel" text="{/#DeliveryItem/DeliveryQuantitySalesUoMCode/@sap:label}"/>
+								</content>
+							</IconTabFilter>
+							<IconTabSeparator icon="sap-icon://open-command-field"/>
+							<IconTabFilter id="S1GoodsIssueTab" design="Horizontal" key="GoodsIssue" icon="sap-icon://shipping-status">
+								<content>
+									<layout:form.SimpleForm layout="ResponsiveLayout" minWidth="900" maxContainerCols="3" editable="false">
+										<layout:content>
+											<mvc:Title/>
+											<Label id="S1GITabFirstLabel"/>
+											<Text id="S1GITabItemsToBePicekdText" text="{i18n>ITEMS_TO_BE_PICKED}"/>
+											<Label id="S1GITabSecondLabel"/>
+											<Text id="S1GITabItemsToBeConfText" text="{i18n>ITEMS_TO_BE_CONF}"/>
+											<Label id="S1GITabThirdLabel"/>
+											<Text id="S1GINumber" text=""/>
+											<mvc:Title/>
+											<Label
+												text="{parts:[{path:'/#DeliveryHeader/GoodsIssuePlanDate/@sap:label'}, {path:'DocumentType'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.setPlanDateLabel'}"
+												tooltip="{parts:[{path:'/#DeliveryHeader/GoodsIssuePlanDate/@sap:label'}, {path:'DocumentType'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.setPlanDateLabel'}"/>
+											<Text text="{path:'GoodsIssuePlanDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true}}"/>
+											<Label text="{/#DeliveryHeader/DeliveryGrossWeightQuantity/@sap:label}" tooltip="{/#DeliveryHeader/DeliveryGrossWeightQuantity/@sap:label}"/>
+											<Text
+												text="{parts:[{path:'DeliveryGrossWeightQuantity'}, {path:'DeliveryGrossWeightUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+											<Label text="{/#DeliveryHeader/DeliveryNetWeightQuantity/@sap:label}" tooltip="{/#DeliveryHeader/DeliveryNetWeightQuantity/@sap:label}"/>
+											<Text
+												text="{parts:[{path:'DeliveryNetWeightQuantity'}, {path:'DeliveryGrossWeightUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+											<Label text="{/#DeliveryHeader/VolumeQuantity/@sap:label}" tooltip="{/#DeliveryHeader/VolumeQuantity/@sap:label}"/>
+											<Text
+												text="{parts:[{path:'VolumeQuantity'}, {path:'VolumeUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+											<Label text="{/#DeliveryHeader/DeliveryPriorityName/@sap:label}" tooltip="{/#DeliveryHeader/DeliveryPriorityName/@sap:label}"/>
+											<Text text="{DeliveryPriorityName}"/>
+											<mvc:Title/>
+											<Label text="{/#DeliveryHeader/ShipToPartyName/@sap:label}" tooltip="{/#DeliveryHeader/ShipToPartyName/@sap:label}"/>
+											<Text
+												text="{parts:[{path:'ShipToPartyName'}, {path:'ShipToPartyID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateNameId'}"/>
+											<Label text="{/#DeliveryHeader/ShipToPartyAddressString/@sap:label}" tooltip="{/#DeliveryHeader/ShipToPartyAddressString/@sap:label}"/>
+											<Text text="{ShipToPartyAddressString}"/>
+										</layout:content>
+									</layout:form.SimpleForm>
+								</content>
+							</IconTabFilter>
+							<IconTabSeparator/>
+							<IconTabFilter id="S1AttachmentsTab" design="Horizontal" key="Attachments" icon="sap-icon://attachment" tooltip="{i18n>ATTACHMENT_TITLE}">
+								<content>
+									<layout:Grid defaultSpan="L12 M12 S12" width="auto">
+										<mvc:ComponentContainer id="PickDeliveryAttachmentContainer"/>
+									</layout:Grid>
+								</content>
+							</IconTabFilter>
+							<!-- Extends the Tab Bar to add additional content -->
+							<mvc:ExtensionPoint name="extS1TabBarBottom"/>
+						</items>
+					</IconTabBar>
+				</items>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

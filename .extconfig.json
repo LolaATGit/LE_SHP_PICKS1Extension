@@ -1,0 +1,54 @@
+{
+    "controllers": {
+        "Main": "LE_SHP_PICKS1%2fMain.controller.js",
+        "OutputManagement": "LE_SHP_PICKS1%2fview%2fOutputManagement.controller.js",
+        "S1": "LE_SHP_PICKS1%2fview%2fS1.controller.js",
+        "S2": "LE_SHP_PICKS1%2fview%2fS2.controller.js"
+    },
+    "views": {
+        "Main": "LE_SHP_PICKS1%2fMain.view.xml",
+        "OutputManagement": "LE_SHP_PICKS1%2fview%2fOutputManagement.view.xml",
+        "S1": "LE_SHP_PICKS1%2fview%2fS1.view.xml",
+        "S2": "LE_SHP_PICKS1%2fview%2fS2.view.xml"
+    },
+    "fragments": {
+        "BusyDialog": "LE_SHP_PICKS1%2ffragments%2fBusyDialog.fragment.xml",
+        "MessageDialog": "LE_SHP_PICKS1%2ffragments%2fMessageDialog.fragment.xml",
+        "MessageDialogDetailPage": "LE_SHP_PICKS1%2ffragments%2fMessageDialogDetailPage.fragment.xml",
+        "MessageDialogOverviewPage": "LE_SHP_PICKS1%2ffragments%2fMessageDialogOverviewPage.fragment.xml",
+        "ReverseGIDateSelectDialog": "LE_SHP_PICKS1%2ffragments%2fReverseGIDateSelectDialog.fragment.xml"
+    },
+    "type": "abaprep",
+    "shouldLinkComponentToManifest": true,
+    "component": "LE_SHP_PICKS1%2fComponent.js",
+    "configuration": "LE_SHP_PICKS1%2fConfiguration.js",
+    "manifest": "LE_SHP_PICKS1%2fmanifest.json",
+    "versionJsonPath": "LE_SHP_PICKS1%2fversion.json",
+    "minUI5Version": "1.78.4",
+    "system": {
+        "name": "s4h.ososoft.de",
+        "description": "s4h.ososoft.de connection",
+        "proxyUrlPrefix": "/destinations/s4h.ososoft.de",
+        "path": "/sap/bc/adt",
+        "url": "/destinations/s4h.ososoft.de/sap/bc/adt",
+        "wattUsage": "dev_abap",
+        "entryPath": "/sap/bc/adt",
+        "sapClient": "100",
+        "additionalData": []
+    },
+    "discoveryStatus": {
+        "csrfToken": "IyVLN73AMtyqAG9vWu_2ZA==",
+        "transports": "/destinations/s4h.ososoft.de/sap/bc/adt/cts/transports",
+        "transportchecks": "/destinations/s4h.ososoft.de/sap/bc/adt/cts/transportchecks",
+        "filestore_ui5_bsp": "/destinations/s4h.ososoft.de/sap/bc/adt/filestore/ui5-bsp/objects",
+        "search": "/destinations/s4h.ososoft.de/sap/bc/adt/repository/informationsystem/search",
+        "ato_settings": "/destinations/s4h.ososoft.de/sap/bc/adt/ato/settings",
+        "ui5_rt_version": "/destinations/s4h.ososoft.de/sap/bc/adt/filestore/ui5-bsp/ui5-rt-version",
+        "description": "s4h.ososoft.de connection",
+        "proxyUrlPrefix": "/destinations/s4h.ososoft.de"
+    },
+    "BSPName": "LE_SHP_PICKS1",
+    "namespace": "i2d.le.delivery.pick.s1",
+    "resourceBundle": "i18n/i18n.properties",
+    "parentResourceRootUrl": "/destinations/s4h.ososoft.de/sap/bc/ui5_ui5/sap/LE_SHP_PICKS1"
+}

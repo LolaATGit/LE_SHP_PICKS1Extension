@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference Uri="https://localhost/" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://localhost/" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="LE_SHP_DELIVERY_PICK" sap:schema-version="1" xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="DeliveryHeader" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="DeliveryID"/>
+				</Key>
+				<Property MaxLength="10" Name="DeliveryID" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filter-restriction="single-value"
+					sap:filterable="false" sap:label="Delivery" sap:sortable="false" sap:unicode="false" sap:updatable="false" sap:value-list="standard"/>
+				<Property MaxLength="10" Name="GoodsIssueID" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Follow-on Doc."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GoodsIssueActualDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false"
+					sap:label="Actual GI Date" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="PickingDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Picking Date"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="TransportPlanDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="TranspPlngDate"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="LoadingDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Loading Date"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GoodsIssuePlanDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false"
+					sap:label="Planned GI Date" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DeliveryDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Delivery Date"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="DeliveryPickingStatusCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Picking Status" sap:sortable="false" sap:unicode="false" sap:updatable="false" sap:value-list="fixed-values"/>
+				<Property MaxLength="60" Name="DeliveryPickingStatusName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Picking Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="DeliveryGoodsIssueStatusCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="GI Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="60" Name="DeliveryGoodsIssueStatusName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="GI Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="DeliveryConfirmationStatusCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Confirmation Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="60" Name="DeliveryConfirmationStatusName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Confirmation Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DeliveryGrossWeightQuantity" Precision="15" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Gross Weight" sap:sortable="false" sap:unicode="false" sap:unit="DeliveryGrossWeightUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="DeliveryGrossWeightUoMCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Unit of Weight" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="DeliveryGrossWeightUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Unit of Weight" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DeliveryNetWeightQuantity" Precision="15" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Net Weight" sap:sortable="false" sap:unicode="false" sap:unit="DeliveryGrossWeightUoMCode" sap:updatable="false"/>
+				<Property Name="VolumeQuantity" Precision="15" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:label="Volume"
+					sap:sortable="false" sap:unicode="false" sap:unit="VolumeUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="VolumeUoMCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Volume Unit"
+					sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="VolumeUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Unit of Volume"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="DeliveryPriorityCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Priority"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="20" Name="DeliveryPriorityName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Priority"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ShipToPartyID" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Ship-To Party"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false" sap:value-list="standard"/>
+				<Property MaxLength="35" Name="ShipToPartyName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Ship-To Party"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="120" Name="ShipToPartyAddressString" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Address"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="ShippingPointCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Shipping Point"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false" sap:value-list="standard"/>
+				<Property MaxLength="30" Name="ShippingPointName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Shipping Point"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ConfirmationIsMandatoryCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Confirmation" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="UserAuthorityForDeliveryCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Activity" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="UserAuthorityForPostGoodsIssueCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Activity" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="UserAuthorityForCancelGoodsIssueCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Activity" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property ConcurrencyMode="Fixed" MaxLength="4" Name="Etag" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="DLV.Version" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="Cold" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Cold Data"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Action" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Pick Del. Head. Act."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="DocumentType" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Document Cat."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IsCloud" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Is Cloud System"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_Assoc_Deliv_Header_Item" Name="DeliveryItems"
+					Relationship="LE_SHP_DELIVERY_PICK.Assoc_Deliv_Header_Item" ToRole="ToRole_Assoc_Deliv_Header_Item"/>
+			</EntityType>
+			<EntityType Name="DeliveryItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="DeliveryID"/>
+					<PropertyRef Name="ItemID"/>
+				</Key>
+				<Property MaxLength="10" Name="DeliveryID" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Delivery" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="6" Name="ItemID" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ItemIsSelected" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="MaterialID" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Material"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="ItemName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item Descript."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DeliveryQuantityInSalesUoM" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Delivery Quantity" sap:sortable="false" sap:unicode="false" sap:unit="DeliveryQuantitySalesUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="DeliveryQuantitySalesUoMCode" Type="Edm.String" sap:creatable="false" sap:filter-restriction="single-value"
+					sap:filterable="false" sap:label="Sales Unit" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"
+					sap:value-list="standard"/>
+				<Property MaxLength="10" Name="DeliveryQuantitySalesUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Quantity Unit Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="PickedQuantity" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Picking Quantity" sap:sortable="false" sap:unicode="false" sap:unit="PickedQuantityUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="PickedQuantityUoMCode" Type="Edm.String" sap:creatable="false" sap:filter-restriction="single-value"
+					sap:filterable="false" sap:label="Sales Unit" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"
+					sap:value-list="standard"/>
+				<Property MaxLength="10" Name="PickedQuantityUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Quantity Unit Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ItemPickingStatusCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Picking Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="60" Name="ItemPickingStatusName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Picking Status Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ItemConfirmationStatusCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Confirmation Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="60" Name="ItemConfirmationStatusName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Conf. Status Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="MaterialAvailabilityDate" Precision="8" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false"
+					sap:label="Material Availability" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="OriginalQuantity" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Original Delivery Quantity" sap:sortable="false" sap:unicode="false" sap:unit="OriginalQuantityUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="OriginalQuantityUoMCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Sales Unit"
+					sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="OriginalQuantityUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Quantity Unit Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DeliveryQuantityInBaseUoM" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Base Unit Delivery Quantity" sap:sortable="false" sap:unicode="false" sap:unit="DeliveryQuantityBaseUoMCode"
+					sap:updatable="false"/>
+				<Property MaxLength="3" Name="DeliveryQuantityBaseUoMCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Base Unit" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"
+					sap:value-list="standard"/>
+				<Property MaxLength="10" Name="DeliveryQuantityBaseUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Quantity Unit Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="6" Name="DeliveryQuantityBaseUoMDimension" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Dimension" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="SalesToBaseFactor" Precision="5" Scale="0" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Numerator" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="SalesToBaseDivisor" Precision="5" Scale="0" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Denominat." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ItemGrossWeightQuantity" Precision="15" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Gross Weight" sap:sortable="false" sap:unicode="false" sap:unit="ItemGrossWeightUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="ItemGrossWeightUoMCode" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Unit of Weight" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ItemGrossWeightUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Unit of Weight" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ItemNetWeightQuantity" Precision="15" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Net Weight" sap:sortable="false" sap:unicode="false" sap:unit="ItemGrossWeightUoMCode" sap:updatable="false"/>
+				<Property Name="ItemVolumeQuantity" Precision="15" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false"
+					sap:label="Volume" sap:sortable="false" sap:unicode="false" sap:unit="ItemVolumeUoMCode" sap:updatable="false"/>
+				<Property MaxLength="3" Name="ItemVolumeUoMCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Volume Unit"
+					sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ItemVolumeUoMName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Unit of Volume"
+					sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ReferenceDocumentId" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Sales Order"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="6" Name="ReferenceDocumentItemId" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Sales Order Item" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ReferenceType" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Document Cat."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="PlantCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Plant"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="PlantName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Plant"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="StorageLocationCode" Type="Edm.String" sap:creatable="false" sap:filter-restriction="single-value"
+					sap:filterable="false" sap:label="Storage Location" sap:sortable="false" sap:unicode="false" sap:updatable="false" sap:value-list="standard"/>
+				<Property MaxLength="16" Name="StorageLocationName" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Storage Location" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="StorageBin" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Storage Bin"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="ItemCategoryCode" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item Category"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="20" Name="ItemCategoryName" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item Type"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="SerialNumberCount" Type="Edm.Int16" sap:creatable="false" sap:filterable="false" sap:label="No.serial no."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="SerialNumberProfile" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="SerialNoProfile" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="SerialNrRelevance" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Checkbox"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property ConcurrencyMode="Fixed" MaxLength="1" Name="Etag" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="DLV.Version" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ItemAction" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Pick Del. Item Act."
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_Assoc_Deliv_Item_Serials" Name="SerialNumbers"
+					Relationship="LE_SHP_DELIVERY_PICK.Assoc_Deliv_Item_Serials" ToRole="ToRole_Assoc_Deliv_Item_Serials"/>
+			</EntityType>
+			<EntityType Name="SerialNumber" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="DeliveryDocument"/>
+					<PropertyRef Name="DeliveryDocumentItem"/>
+					<PropertyRef Name="SerialNumberID"/>
+				</Key>
+				<Property MaxLength="10" Name="DeliveryDocument" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Delivery" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="6" Name="DeliveryDocumentItem" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Item" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="19" Name="ObjectListKey" Type="Edm.Int64" sap:creatable="false" sap:filterable="false" sap:label="Object list"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="SerialNumberID" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Serial Number" sap:sortable="false" sap:unicode="false" sap:updatable="false" sap:value-list="standard"/>
+				<Property MaxLength="18" Name="Equipment" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Equipment"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="72" Name="UniqueID" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Unique Item ID"
+					sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_VMVLA_SHP_ODATA" sap:content-version="1" sap:label="Outbound Delivery: Not Posted for GI" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="VBELN"/>
+				</Key>
+				<Property MaxLength="10" Name="VBELN" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Delivery"
+					sap:sortable="false"/>
+				<Property MaxLength="4" Name="VSTEL" Type="Edm.String" sap:display-format="UpperCase" sap:label="Shipping Point" sap:sortable="false"
+					sap:value-list="standard"/>
+				<Property MaxLength="10" Name="KUNNR" Type="Edm.String" sap:display-format="UpperCase" sap:label="Ship-To Party" sap:sortable="false"
+					sap:value-list="standard"/>
+				<Property Name="KODAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Picking Date" sap:sortable="false"/>
+				<Property Name="LDDAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Loading Date" sap:sortable="false"/>
+				<Property Name="WADAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Actual GI Date" sap:sortable="false"/>
+				<Property Name="LFDAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Delivery Date" sap:sortable="false"/>
+				<Property MaxLength="1" Name="KOSTK" Type="Edm.String" sap:display-format="UpperCase" sap:label="Picking Status" sap:sortable="false"
+					sap:value-list="fixed-values"/>
+				<Property MaxLength="60" Name="KOSTK_NAME" Type="Edm.String" sap:label="Picking Status Name" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_VMVLF_SHP_ODATA" sap:content-version="1" sap:label="Outbound Delivery: Posted" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="VBELN"/>
+				</Key>
+				<Property MaxLength="4" Name="BEGRU" Type="Edm.String" sap:display-format="UpperCase" sap:filterable="false" sap:label="AuthorizGroup"
+					sap:sortable="false"/>
+				<Property MaxLength="10" Name="VBELN" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Delivery"
+					sap:sortable="false"/>
+				<Property MaxLength="4" Name="VSTEL" Type="Edm.String" sap:display-format="UpperCase" sap:label="Shipping Point" sap:sortable="false"
+					sap:value-list="standard"/>
+				<Property MaxLength="10" Name="KUNNR" Type="Edm.String" sap:display-format="UpperCase" sap:label="Ship-To Party" sap:sortable="false"
+					sap:value-list="standard"/>
+				<Property Name="KODAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Picking Date" sap:sortable="false"/>
+				<Property Name="LDDAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Loading Date" sap:sortable="false"/>
+				<Property Name="WADAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Actual GI Date" sap:sortable="false"/>
+				<Property Name="LFDAT" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Delivery Date" sap:sortable="false"/>
+				<Property MaxLength="1" Name="WBSTK" Type="Edm.String" sap:display-format="UpperCase" sap:label="GI Status" sap:sortable="false"
+					sap:value-list="fixed-values"/>
+				<Property MaxLength="60" Name="WBSTK_NAME" Type="Edm.String" sap:label="GI Status Name" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_DEBIA" sap:content-version="1" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="LAND1"/>
+					<PropertyRef Name="PSTLZ"/>
+					<PropertyRef Name="MCOD3"/>
+					<PropertyRef Name="MCOD1"/>
+					<PropertyRef Name="KUNNR"/>
+				</Key>
+				<Property MaxLength="4" Name="BEGRU" Type="Edm.String" sap:display-format="UpperCase" sap:filterable="false" sap:label="Authorization"
+					sap:sortable="false"/>
+				<Property MaxLength="4" Name="KTOKD" Type="Edm.String" sap:display-format="UpperCase" sap:filterable="false" sap:label="Account Group"
+					sap:sortable="false"/>
+				<Property MaxLength="3" Name="LAND1" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Country"
+					sap:sortable="false"/>
+				<Property MaxLength="10" Name="PSTLZ" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Postal Code"
+					sap:sortable="false"/>
+				<Property MaxLength="25" Name="MCOD3" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="City"
+					sap:sortable="false"/>
+				<Property MaxLength="25" Name="MCOD1" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Customer Name"
+					sap:sortable="false"/>
+				<Property MaxLength="10" Name="KUNNR" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Customer"
+					sap:sortable="false"/>
+				<Property Name="LOEVM" Type="Edm.Boolean" sap:label="Deletion flag" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_TVST" sap:content-version="1" sap:label="Select Unit of Measure for Material" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="VSTEL"/>
+				</Key>
+				<Property MaxLength="4" Name="VSTEL" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Shipping Point"
+					sap:sortable="false"/>
+				<Property MaxLength="30" Name="VTEXT" Type="Edm.String" sap:label="Shipping Point Name" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_T006" sap:content-version="1" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="MSEH3"/>
+					<PropertyRef Name="MSEHI"/>
+					<PropertyRef Name="MSEHL"/>
+					<PropertyRef Name="TXDIM"/>
+				</Key>
+				<Property MaxLength="3" Name="MSEH3" Nullable="false" Type="Edm.String" sap:label="Commercial" sap:sortable="false"/>
+				<Property MaxLength="3" Name="MSEHI" Nullable="false" Type="Edm.String" sap:label="Internal UoM" sap:semantics="unit-of-measure"
+					sap:sortable="false"/>
+				<Property MaxLength="30" Name="MSEHL" Nullable="false" Type="Edm.String" sap:label="UoM Text" sap:sortable="false"/>
+				<Property MaxLength="20" Name="TXDIM" Nullable="false" Type="Edm.String" sap:label="Dimension text" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_MARM_SHP_ODATA" sap:content-version="1" sap:label="Select Unit of Measure for Material" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="SPRAS"/>
+					<PropertyRef Name="MEINH"/>
+					<PropertyRef Name="MATNR"/>
+				</Key>
+				<Property MaxLength="3" Name="MEINS" Type="Edm.String" sap:filterable="false" sap:label="Base Unit" sap:semantics="unit-of-measure"
+					sap:sortable="false"/>
+				<Property MaxLength="30" Name="MSEHL" Type="Edm.String" sap:filterable="false" sap:label="Alternative Unit Text" sap:sortable="false"/>
+				<Property Name="UMREZ" Precision="5" Scale="0" Type="Edm.Decimal" sap:filterable="false" sap:label="Numerator" sap:sortable="false"/>
+				<Property Name="UMREN" Precision="5" Scale="0" Type="Edm.Decimal" sap:filterable="false" sap:label="Denominator" sap:sortable="false"/>
+				<Property MaxLength="2" Name="SPRAS" Nullable="false" Type="Edm.String" sap:filterable="false" sap:label="Language" sap:sortable="false"/>
+				<Property MaxLength="3" Name="MEINH" Nullable="false" Type="Edm.String" sap:label="Alternative Unit" sap:semantics="unit-of-measure"
+					sap:sortable="false"/>
+				<Property MaxLength="40" Name="MATNR" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Material"
+					sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_T006_SHP_ODATA" sap:content-version="1" sap:label="Unit of Measure" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="MSEHI"/>
+					<PropertyRef Name="DIMID"/>
+				</Key>
+				<Property MaxLength="3" Name="MSEH3" Type="Edm.String" sap:label="Commercial Unit" sap:sortable="false"/>
+				<Property MaxLength="3" Name="MSEHI" Nullable="false" Type="Edm.String" sap:label="Internal Unit" sap:semantics="unit-of-measure"
+					sap:sortable="false"/>
+				<Property MaxLength="30" Name="MSEHL" Type="Edm.String" sap:label="Unit Text" sap:sortable="false"/>
+				<Property MaxLength="6" Name="DIMID" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Dimension"
+					sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_T001L_OLD_SHP_ODATA" sap:content-version="1" sap:label="Storage Locations for Plant" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="LGORT"/>
+					<PropertyRef Name="WERKS"/>
+				</Key>
+				<Property MaxLength="4" Name="LGORT" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Storage Location"
+					sap:sortable="false"/>
+				<Property MaxLength="4" Name="WERKS" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Plant"
+					sap:sortable="false"/>
+				<Property MaxLength="16" Name="LGOBE" Type="Edm.String" sap:label="Storage Location Name" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_SH_H_EQSNS_SHP_ODATA" sap:content-version="1" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="MATNR"/>
+					<PropertyRef Name="SERNR"/>
+					<PropertyRef Name="EQUNR"/>
+				</Key>
+				<Property MaxLength="22" Name="OBJNR" Type="Edm.String" sap:display-format="UpperCase" sap:filterable="false" sap:label="Object Number"
+					sap:sortable="false"/>
+				<Property MaxLength="10" Name="VBELN" Type="Edm.String" sap:display-format="UpperCase" sap:label="Delivery" sap:sortable="false"/>
+				<Property MaxLength="6" Name="POSNR" Type="Edm.String" sap:display-format="NonNegative" sap:label="Item" sap:sortable="false"/>
+				<Property MaxLength="40" Name="MATNR" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Material"
+					sap:sortable="false"/>
+				<Property MaxLength="18" Name="SERNR" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Serial Number"
+					sap:sortable="false"/>
+				<Property MaxLength="18" Name="EQUNR" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Equipment"
+					sap:sortable="false"/>
+				<Property MaxLength="72" Name="UII" Type="Edm.String" sap:display-format="UpperCase" sap:label="Unique Item ID" sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="VL_FV_LE_STATV" sap:content-version="1" sap:value-list="true">
+				<Key>
+					<PropertyRef Name="Code"/>
+				</Key>
+				<Property MaxLength="1" Name="Code" Nullable="false" Type="Edm.String" sap:label="Value" sap:text="Text"/>
+				<Property MaxLength="60" Name="Text" Type="Edm.String" sap:label="Short Descript."/>
+			</EntityType>
+			<ComplexType Name="ItemAction">
+				<Property MaxLength="1" Name="Updkz" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false"
+					sap:label="Update indicator" sap:sortable="false" sap:updatable="false"/>
+			</ComplexType>
+			<Association Name="Assoc_Deliv_Header_Item" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_Assoc_Deliv_Header_Item" Type="LE_SHP_DELIVERY_PICK.DeliveryHeader"/>
+				<End Multiplicity="*" Role="ToRole_Assoc_Deliv_Header_Item" Type="LE_SHP_DELIVERY_PICK.DeliveryItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Assoc_Deliv_Header_Item">
+						<PropertyRef Name="DeliveryID"/>
+					</Principal>
+					<Dependent Role="ToRole_Assoc_Deliv_Header_Item">
+						<PropertyRef Name="DeliveryID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Assoc_Deliv_Item_Serials" sap:content-version="1">
+				<End Multiplicity="0..1" Role="FromRole_Assoc_Deliv_Item_Serials" Type="LE_SHP_DELIVERY_PICK.DeliveryItem"/>
+				<End Multiplicity="*" Role="ToRole_Assoc_Deliv_Item_Serials" Type="LE_SHP_DELIVERY_PICK.SerialNumber"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Assoc_Deliv_Item_Serials">
+						<PropertyRef Name="DeliveryID"/>
+						<PropertyRef Name="ItemID"/>
+					</Principal>
+					<Dependent Role="ToRole_Assoc_Deliv_Item_Serials">
+						<PropertyRef Name="DeliveryDocument"/>
+						<PropertyRef Name="DeliveryDocumentItem"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="LE_SHP_DELIVERY_PICK_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLA_SHP_ODATA" Name="VL_SH_H_VMVLA_SHP_ODATA" sap:content-version="1"
+					sap:countable="false" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLF_SHP_ODATA" Name="VL_SH_H_VMVLF_SHP_ODATA" sap:content-version="1"
+					sap:countable="false" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_DEBIA" Name="VL_SH_DEBIA" sap:content-version="1" sap:countable="false"
+					sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_TVST" Name="VL_SH_H_TVST" sap:content-version="1" sap:countable="false"
+					sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_T006" Name="VL_SH_H_T006" sap:content-version="1" sap:countable="false"
+					sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_MARM_SHP_ODATA" Name="VL_SH_H_MARM_SHP_ODATA" sap:content-version="1"
+					sap:countable="false" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_T006_SHP_ODATA" Name="VL_SH_H_T006_SHP_ODATA" sap:content-version="1"
+					sap:countable="false" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_T001L_OLD_SHP_ODATA" Name="VL_SH_H_T001L_OLD_SHP_ODATA" sap:content-version="1"
+					sap:countable="false" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_SH_H_EQSNS_SHP_ODATA" Name="VL_SH_H_EQSNS_SHP_ODATA" sap:content-version="1"
+					sap:countable="false" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.VL_FV_LE_STATV" Name="VL_FV_LE_STATV" sap:content-version="1" sap:semantics="fixed-values"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.DeliveryHeader" Name="DeliveryHeader" sap:addressable="false" sap:content-version="1"
+					sap:creatable="false" sap:pageable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.DeliveryItem" Name="DeliveryItems" sap:content-version="1" sap:creatable="false"/>
+				<EntitySet EntityType="LE_SHP_DELIVERY_PICK.SerialNumber" Name="SerialNumbers" sap:content-version="1" sap:creatable="false"/>
+				<AssociationSet Association="LE_SHP_DELIVERY_PICK.Assoc_Deliv_Item_Serials" Name="Assoc_Deliv_Item_SerialsSet" sap:content-version="1"
+					sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="DeliveryItems" Role="FromRole_Assoc_Deliv_Item_Serials"/>
+					<End EntitySet="SerialNumbers" Role="ToRole_Assoc_Deliv_Item_Serials"/>
+				</AssociationSet>
+				<AssociationSet Association="LE_SHP_DELIVERY_PICK.Assoc_Deliv_Header_Item" Name="Assoc_Deliv_Header_ItemSet" sap:content-version="1"
+					sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="DeliveryHeader" Role="FromRole_Assoc_Deliv_Header_Item"/>
+					<End EntitySet="DeliveryItems" Role="ToRole_Assoc_Deliv_Header_Item"/>
+				</AssociationSet>
+			</EntityContainer>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/DeliveryID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Outbound Delivery: GI Not Posted"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_VMVLA_SHP_ODATA"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryID"/>
+									<PropertyValue Property="ValueListProperty" String="VBELN"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="VSTEL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="KUNNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="KODAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LDDAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="WADAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LFDAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="KOSTK"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="KOSTK_NAME"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Qualifier="H_VMVLF_SHP_ODATA" Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/DeliveryID"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Outbound Delivery: GI Posted"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_VMVLF_SHP_ODATA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryID"/>
+									<PropertyValue Property="ValueListProperty" String="VBELN"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="VSTEL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="KUNNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="KODAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LDDAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="WADAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LFDAT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="WBSTK"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="WBSTK_NAME"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/DeliveryPickingStatusCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Document Status"/>
+						<PropertyValue Property="CollectionPath" String="VL_FV_LE_STATV"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryPickingStatusCode"/>
+									<PropertyValue Property="ValueListProperty" String="Code"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/ShipToPartyID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Customers (General)"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_DEBIA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="SORTL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LAND1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="PSTLZ"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MCOD3"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MCOD1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ShipToPartyID"/>
+									<PropertyValue Property="ValueListProperty" String="KUNNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LOEVM"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/ShippingPointCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Helpview shipping points"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_TVST"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ShippingPointCode"/>
+									<PropertyValue Property="ValueListProperty" String="VSTEL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ShippingPointName"/>
+									<PropertyValue Property="ValueListProperty" String="VTEXT"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem/DeliveryQuantitySalesUoMCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Help view for T006"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_T006"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MSEH3"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryQuantitySalesUoMCode"/>
+									<PropertyValue Property="ValueListProperty" String="MSEHI"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MSEHL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="TXDIM"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem/PickedQuantityUoMCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Unit of Measure for Material"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_MARM_SHP_ODATA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="PickedQuantityUoMCode"/>
+									<PropertyValue Property="ValueListProperty" String="MEINH"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MSEHL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="UMREN"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="UMREZ"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MEINS"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MSEHT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="MaterialID"/>
+									<PropertyValue Property="ValueListProperty" String="MATNR"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem/DeliveryQuantityBaseUoMCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Unit of Measure"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_T006_SHP_ODATA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MSEH3"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryQuantityBaseUoMCode"/>
+									<PropertyValue Property="ValueListProperty" String="MSEHI"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MSEHL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryQuantityBaseUoMDimension"/>
+									<PropertyValue Property="ValueListProperty" String="DIMID"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="TXDIM"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem/StorageLocationCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Storage Locations for Plant"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_T001L_OLD_SHP_ODATA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="StorageLocationCode"/>
+									<PropertyValue Property="ValueListProperty" String="LGORT"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="PlantCode"/>
+									<PropertyValue Property="ValueListProperty" String="WERKS"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="StorageLocationName"/>
+									<PropertyValue Property="ValueListProperty" String="LGOBE"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.SerialNumber/SerialNumberID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Serial Numbers for Material"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_EQSNS_SHP_ODATA"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="SerialNumberID"/>
+									<PropertyValue Property="ValueListProperty" String="SERNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="EQUNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="UniqueID"/>
+									<PropertyValue Property="ValueListProperty" String="UII"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.UI.v1.HeaderInfo">
+					<Record Type="com.sap.vocabularies.UI.v1.HeaderInfoType">
+						<PropertyValue Property="TypeName" String="Delivery"/>
+						<PropertyValue Property="TypeNamePlural" String="Deliveries"/>
+						<PropertyValue Property="Title">
+							<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								<PropertyValue Path="DeliveryID" Property="Value"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								<PropertyValue Path="PickingDate" Property="Value"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Qualifier="i2d.le.delivery.pick.HeaderQuickView" Term="com.sap.vocabularies.UI.v1.FieldGroup">
+					<Record>
+						<PropertyValue Property="Label" String=""/>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryID" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="GoodsIssueID" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="PickingDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="TransportPlanDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="LoadingDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="GoodsIssuePlanDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="GoodsIssueActualDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryPickingStatusName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryGoodsIssueStatusName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryConfirmationStatusName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryGrossWeightQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryNetWeightQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="VolumeQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryPriorityCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryPriorityName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ShipToPartyID" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ShipToPartyName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ShipToPartyAddressString" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ShippingPointCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ShippingPointName" Property="Value"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.UI.v1.QuickViewFacets">
+					<Collection>
+						<Record Type="com.sap.vocabularies.UI.v1.ReferenceFacet">
+							<PropertyValue AnnotationPath="@UI.FieldGroup#i2d.le.delivery.pick.HeaderQuickView" Property="Target"/>
+							<PropertyValue Property="Label" String="Delivery"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.UI.v1.HeaderInfo">
+					<Record Type="com.sap.vocabularies.UI.v1.HeaderInfoType">
+						<PropertyValue Property="TypeName" String="Delivery Item"/>
+						<PropertyValue Property="TypeNamePlural" String="Delivery Items"/>
+						<PropertyValue Property="Title">
+							<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								<PropertyValue Path="DeliveryID" Property="Value"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								<PropertyValue Path="ItemID" Property="Value"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Qualifier="i2d.le.delivery.pick.ItemQuickView" Term="com.sap.vocabularies.UI.v1.FieldGroup">
+					<Record>
+						<PropertyValue Property="Label" String=""/>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryID" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemID" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="MaterialID" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryQuantityInSalesUoM" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="PickedQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="PickedQuantityUoMName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemPickingStatusCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemPickingStatusName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemConfirmationStatusCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemConfirmationStatusName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="MaterialAvailabilityDate" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryQuantityInBaseUoM" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="DeliveryQuantityBaseUoMName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="SalesToBaseFactor" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="SalesToBaseDivisor" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemGrossWeightQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemGrossWeightUoMName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemNetWeightQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemVolumeQuantity" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemVolumeUoMName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ReferenceDocumentId" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ReferenceDocumentItemId" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ReferenceType" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="PlantCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="PlantName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="StorageLocationCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="StorageLocationName" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="StorageBin" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemCategoryCode" Property="Value"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.UI.v1.DataField">
+									<PropertyValue Path="ItemCategoryName" Property="Value"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.UI.v1.QuickViewFacets">
+					<Collection>
+						<Record Type="com.sap.vocabularies.UI.v1.ReferenceFacet">
+							<PropertyValue AnnotationPath="@UI.FieldGroup#i2d.le.delivery.pick.ItemQuickView" Property="Target"/>
+							<PropertyValue Property="Label" String="Delivery Item"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/DeliveryID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation String="OutboundDelivery" Term="com.sap.vocabularies.Common.v1.SemanticObject"/>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryHeader/ShipToPartyID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation String="Customer" Term="com.sap.vocabularies.Common.v1.SemanticObject"/>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.DeliveryItem/DeliveryID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation String="OutboundDelivery" Term="com.sap.vocabularies.Common.v1.SemanticObject"/>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLA_SHP_ODATA/KUNNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Customers (General)"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_DEBIA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="KUNNR"/>
+									<PropertyValue Property="ValueListProperty" String="KUNNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MCOD1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="PSTLZ"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MCOD3"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LAND1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="SORTL"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLA_SHP_ODATA/VSTEL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Helpview shipping points"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_TVST"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="VSTEL"/>
+									<PropertyValue Property="ValueListProperty" String="VSTEL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="VTEXT"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLA_SHP_ODATA/KOSTK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="VL_FV_LE_STATV"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="KOSTK"/>
+									<PropertyValue Property="ValueListProperty" String="Code"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLF_SHP_ODATA/KUNNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Customers (General)"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_DEBIA"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="KUNNR"/>
+									<PropertyValue Property="ValueListProperty" String="KUNNR"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MCOD1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="PSTLZ"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MCOD3"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="LAND1"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="SORTL"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLF_SHP_ODATA/VSTEL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Helpview shipping points"/>
+						<PropertyValue Property="CollectionPath" String="VL_SH_H_TVST"/>
+						<PropertyValue Bool="true" Property="SearchSupported"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="VSTEL"/>
+									<PropertyValue Property="ValueListProperty" String="VSTEL"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="VTEXT"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="LE_SHP_DELIVERY_PICK.VL_SH_H_VMVLF_SHP_ODATA/WBSTK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="VL_FV_LE_STATV"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="WBSTK"/>
+									<PropertyValue Property="ValueListProperty" String="Code"/>
+								</Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<atom:link href="http://localhost/DUMMY_SERVICE/$metadata" rel="self" xmlns:atom="http://www.w3.org/2005/Atom"/>
+			<atom:link href="localhost:8080/sap/opu/odata/sap/LE_SHP_DELIVERY_PICK/$metadata" rel="latest-version"
+				xmlns:atom="http://www.w3.org/2005/Atom"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

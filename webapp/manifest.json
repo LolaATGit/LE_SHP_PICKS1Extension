@@ -1,0 +1,95 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension",
+        "type": "application",
+        "applicationVersion": {
+            "version": "1.0"
+        },
+        "title": "{{FULLSCREEN_TITLE}}",
+        "i18n": "i18n/i18n.properties",
+        "sourceTemplate": {
+            "id": "@sap/ux-app-migrator:freestyle",
+            "version": "1.10.0",
+            "toolsId": "1f1d4c31-5329-47db-aed1-939c33369318"
+        }
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://Fiori6/F0868",
+            "favIcon": "./resources/sap/ca/ui/themes/base/img/favicon/F0868_Pick_Delivery.ico"
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": false
+        },
+        "supportedThemes": [
+            "sap_hcb,sap_bluecrystal,sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "dependencies": {
+            "minUI5Version": "1.78.4"
+        },
+        "extends": {
+            "component": "i2d.le.delivery.pick.s1",
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "i2d.le.delivery.pick.s1.Main": {
+                        "controllerName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.MainCustom"
+                    },
+                    "i2d.le.delivery.pick.s1.view.S1": {
+                        "controllerName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.view.S1Custom"
+                    },
+                    "i2d.le.delivery.pick.s1.view.S2": {
+                        "controllerName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.view.S2Custom"
+                    },
+                    "i2d.le.delivery.pick.s1.view.OutputManagement": {
+                        "controllerName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.view.OutputManagementCustom"
+                    }
+                },
+                "sap.ui.viewReplacements": {
+                    "i2d.le.delivery.pick.s1.Main": {
+                        "viewName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.MainCustom",
+                        "type": "XML"
+                    },
+                    "i2d.le.delivery.pick.s1.view.S1": {
+                        "viewName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.view.S1Custom",
+                        "type": "XML"
+                    },
+                    "i2d.le.delivery.pick.s1.view.S2": {
+                        "viewName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.view.S2Custom",
+                        "type": "XML"
+                    },
+                    "i2d.le.delivery.pick.s1.view.OutputManagement": {
+                        "viewName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.view.OutputManagementCustom",
+                        "type": "XML"
+                    }
+                },
+                "sap.ui.viewExtensions": {
+                    "i2d.le.delivery.pick.s1.fragments.ReverseGIDateSelectDialog": {
+                        "extReverseGIFragmentDialog": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.fragments.ReverseGIDateSelectDialog_extReverseGIFragmentDialogCustom",
+                            "type": "XML"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "config": {
+            "sap.ca.i18Nconfigs": {
+                "bundleName": "i2d.le.delivery.pick.s1.LE_SHP_PICKS1Extension.i18n.i18n"
+            }
+        }
+    }
+}

@@ -1,0 +1,86 @@
+[{
+	"MSEH3": "G",
+	"MSEHI": "G",
+	"MSEHL": "Gram",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "KG",
+	"MSEHI": "KG",
+	"MSEHL": "Kilogram",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "KT",
+	"MSEHI": "KT",
+	"MSEHL": "Kiloton",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "LB",
+	"MSEHI": "LB",
+	"MSEHL": "US pound",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "MG",
+	"MSEHI": "MG",
+	"MSEHL": "Milligram",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "OZ",
+	"MSEHI": "OZ",
+	"MSEHL": "Ounce",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "TO",
+	"MSEHI": "TO",
+	"MSEHL": "Ton",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "TON",
+	"MSEHI": "TON",
+	"MSEHL": "US Ton",
+	"DIMID": "MASS"
+}, {
+	"MSEH3": "µL",
+	"MSEHI": "µL",
+	"MSEHL": "Microliter",
+	"DIMID": "VOLUME"
+}, {
+	"DIMID": "VOLUME",
+	"MSEH3": "CCM",
+	"MSEHI": "CCM",
+	"MSEHL": "Cubic centimeter"
+}, {
+	"DIMID": "VOLUME",
+	"MSEH3": "CD3",
+	"MSEHI": "CD3",
+	"MSEHL": "Cubic decimeter"
+}, {
+	"DIMID": "VOLUME",
+	"MSEH3": "CL",
+	"MSEHI": "CL",
+	"MSEHL": "Centiliter"
+}, {
+	"DIMID": "VOLUME",
+	"MSEHL": "Cubic foot",
+	"MSEH3": "FT3",
+	"MSEHI": "FT3"
+}, {
+	"MSEH3": "GAL",
+	"MSEHI": "GAL",
+	"MSEHL": "US gallon",
+	"DIMID": "VOLUME"
+}, {
+	"MSEH3": "HL",
+	"MSEHI": "HL",
+	"MSEHL": "Hectoliter",
+	"DIMID": "VOLUME"
+}, {
+	"DIMID": "VOLUME",
+	"MSEH3": "L",
+	"MSEHI": "L",
+	"MSEHL": "Liter"
+}, {
+	"DIMID": "VOLUME",
+	"MSEH3": "M3",
+	"MSEHI": "M3",
+	"MSEHL": "Cubic meter"
+}]

@@ -1,0 +1,8 @@
+Mockdata in 
+ -attachmentService
+ -featureToggleService
+ -pickService
+ 
+ used by localIndex only.
+ 
+ OPA5 Tests rely on files in the model folder!

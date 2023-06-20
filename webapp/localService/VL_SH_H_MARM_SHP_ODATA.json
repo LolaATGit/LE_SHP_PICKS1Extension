@@ -1,0 +1,105 @@
+[{
+	"MEINS": "EA",
+	"MSEHL": "Each",
+	"UMREZ": "20",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "CRT",
+	"MATNR": "AJ-MCC-0007"
+}, {
+	"MEINS": "CRT",
+	"MSEHL": "Carton",
+	"UMREZ": "1",
+	"UMREN": "20",
+	"SPRAS": "EN",
+	"MEINH": "EA",
+	"MATNR": "AJ-MCC-0007"
+}, {
+	"MEINS": "EA",
+	"MSEHL": "Each",
+	"UMREZ": "200",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "PALLET",
+	"MATNR": "AJ-MCC-0007"
+}, {
+	"MEINS": "PALLET",
+	"MSEHL": "Pallet",
+	"UMREZ": "1",
+	"UMREN": "200",
+	"SPRAS": "EN",
+	"MEINH": "EA",
+	"MATNR": "AJ-MCC-0007"
+}, {
+	"MEINS": "EA",
+	"MSEHL": "Each",
+	"UMREZ": "20",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "CRT",
+	"MATNR": "AJ-MCC-0020"
+}, {
+	"MEINS": "CRT",
+	"MSEHL": "Carton",
+	"UMREZ": "1",
+	"UMREN": "20",
+	"SPRAS": "EN",
+	"MEINH": "EA",
+	"MATNR": "AJ-MCC-0020"
+}, {
+	"MEINS": "EA",
+	"MSEHL": "Each",
+	"UMREZ": "1",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "EA",
+	"MATNR": "MCA-0010-BOP0"
+}, {
+	"MEINS": "EA",
+	"MSEHL": "Each",
+	"UMREZ": "1",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "EA",
+	"MATNR": "MCA-0020-BOP0"
+}, {
+	"MEINS": "EA",
+	"MSEHL": "Each",
+	"UMREZ": "1",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "EA",
+	"MATNR": "GCAU200005"
+}, {
+	"MEINS": "KG",
+	"MSEHL": "Kilogram",
+	"UMREZ": "1000",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "TON",
+	"MATNR": "RM-0815"
+}, {
+	"MEINS": "TON",
+	"MSEHL": "Ton",
+	"UMREZ": "1",
+	"UMREN": "1000",
+	"SPRAS": "EN",
+	"MEINH": "KG",
+	"MATNR": "RM-0815"
+}, {
+	"MEINS": "M",
+	"MSEHL": "Metre",
+	"UMREZ": "1000",
+	"UMREN": "1",
+	"SPRAS": "EN",
+	"MEINH": "KM",
+	"MATNR": "FO-LOC-215"
+}, {
+	"MEINS": "KM",
+	"MSEHL": "Kilometre",
+	"UMREZ": "1",
+	"UMREN": "1000",
+	"SPRAS": "EN",
+	"MEINH": "M",
+	"MATNR": "FO-LOC-215"
+}]

@@ -1,0 +1,170 @@
+<!--
+
+    Copyright (C) 2009-2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:layout="sap.ui.layout" xmlns:ca="sap.ca.ui" controllerName="i2d.le.delivery.pick.s1.view.S2">
+	<Page id="page">
+		<content>
+			<Breadcrumbs currentLocationText="" class="sapUiMediumMarginTop sapUiMediumMarginBegin ">
+				<Link press="onBreadCrumbPressed"
+					text="{parts:[{path:'i18n>LABEL_OUT_DELIVERY'}, {path:'DeliveryID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateTextNumber'}"/>
+			</Breadcrumbs>
+			<ObjectHeader id="S2DeliveryItemObjectHeader"
+				title="{parts:[{path:'i18n>LABEL_ITEM'}, {path:'ItemID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateTextNumber'}">
+				<attributes>
+					<!-- Extends the Object Header to add additional content -->
+					<mvc:ExtensionPoint name="extS2DeliveryItemObjectHeaderTop"/>
+					<!-- Extends the Tab Bar to add additional content -->
+					<mvc:ExtensionPoint name="extS2DeliveryItemObjectHeaderBottom"/>
+				</attributes>
+			</ObjectHeader>
+			<layout:Grid defaultSpan="L12 M12 S12" width="auto">
+				<layout:content>
+					<layout:form.SimpleForm layout="ResponsiveLayout" id="S2SimpleLayout" minWidth="600" maxContainerCols="2" editable="true">
+						<layout:content>
+							<!-- Extends the Simple Form to add additional content -->
+							<mvc:ExtensionPoint name="extS2SimpleFormTop"/>
+							<mvc:Title text=""/>
+							<!-- Sales Order -->
+							<Label id="S2ReferenceDocumentIDLabel" text="{/#DeliveryItem/ReferenceDocumentId/@sap:label}"
+								tooltip="{/#DeliveryItem/ReferenceDocumentId/@sap:label}"/>
+							<Input id="S2ReferenceDocumentIDText" editable="false" value="{ReferenceDocumentId}"/>
+							<!-- Sales Order Item-->
+							<Label id="S2ReferenceDocumentItemLabel" text="{/#DeliveryItem/ReferenceDocumentItemId/@sap:label}"
+								tooltip="{/#DeliveryItem/ReferenceDocumentItemId/@sap:label}"/>
+							<Input id="S2ReferenceDocumentItemText" editable="false"
+								value="{path: 'ReferenceDocumentItemId', formatter: 'i2d.le.delivery.pick.s1.util.formatter.formatRefDocItemId'}"/>
+							<!-- Item Type -->
+							<Label id="S2DeliveryItemCategoryLabel" text="{/#DeliveryItem/ItemCategoryName/@sap:label}"
+								tooltip="{/#DeliveryItem/ItemCategoryName/@sap:label}"/>
+							<Input id="S2DeliveryItemCategoryText" editable="false"
+								value="{parts:[{path:'ItemCategoryName'}, {path:'ItemCategoryCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateNameId'}"/>
+							<Label/>
+							<Text text=""/>
+							<!-- Original Delivery Quantity -->
+							<Label id="S2OriginalQuantityLabel" text="{/#DeliveryItem/OriginalQuantity/@sap:label}"
+								tooltip="{/#DeliveryItem/OriginalQuantity/@sap:label}"/>
+							<Input id="S2OriginalQuantityText" editable="false"
+								value="{parts:[{path:'OriginalQuantity'}, {path:'OriginalQuantityUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+							<!-- Picked Quantity -->
+							<Label id="S2PickedQuantityLabel" text="{/#DeliveryItem/PickedQuantity/@sap:label}" tooltip="{/#DeliveryItem/PickedQuantity/@sap:label}"/>
+							<Input id="S2PickedQuantityInput"
+								editable="{parts:[{path: 'FieldControl>/PickedQuantityEditable'},{path: 'ItemPickingStatusCode'}], formatter: 'i2d.le.delivery.pick.s1.util.formatter.formatPickQuantityEditable'}"
+								value="{parts:[{path: 'PickedQuantity'}, {path: 'PickedQuantityUoMCode'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatSimpleFormQuantityField'}"
+								change="handleAmountChange" textAlign="Right" maxLength="21"/>
+							<Input id="S2PickedQuantityUoMCodeInput" editable="false" value="{PickedQuantityUoMCode}" visible="{FieldControl>/InputEditable}"/>
+							<!-- Delivery Quantity -->
+							<Label id="S2DeliveryQuantityLabel" text="{/#DeliveryItem/DeliveryQuantityInSalesUoM/@sap:label}"
+								tooltip="{/#DeliveryItem/DeliveryQuantityInSalesUoM/@sap:label}"/>
+							<Input id="S2DeliveryQuantityInSalesUoMInput" editable="{FieldControl>/InputEditable}"
+								value="{parts:[{path: 'DeliveryQuantityInSalesUoM'}, {path: 'DeliveryQuantitySalesUoMCode'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatSimpleFormQuantityField'}"
+								change="handleAmountChange" textAlign="Right" maxLength="21"/>
+							<Input id="S2DeliveryQuantityUoMCodeInput"
+								editable="{parts:[{path:'FieldControl>/InputEditable'}, {path:'PickedQuantity'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatUoMCodeInput'}"
+								value="{DeliveryQuantitySalesUoMCode}" showValueHelp="true" visible="{FieldControl>/InputEditable}" change="handleUoMCodeChange"
+								valueHelpRequest="onRegisterVHDialog"/>
+							<!-- Conversion Rate-->
+							<Label id="S2DeliveryConversionRateLabel" text="{i18n>LABEL_CONV_RATE}" tooltip="{i18n>LABEL_CONV_RATE}"/>
+							<!--<Input 
+								id="S2DeliveryItemConversionRateInput" 
+								editable="false"
+								value="{parts:[{path:'SalesToBaseDivisor'}, {path:'DeliveryQuantitySalesUoMCode'}, {path:'SalesToBaseFactor'}, {path:'DeliveryQuantityBaseUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConversionRate'}"/>-->
+							<FlexBox>
+								<items alignItems="Start">
+									<!--Use a different formatter to avoid issue with trailing zeros being cut off! Or what input is required?=-->
+									<Input id="S2DeliveryItemConversionRateDivisor"
+										value="{parts:[{path:'SalesToBaseDivisor'}, {path:'DeliveryQuantitySalesUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"
+										editable="false"/>
+									<Text id="S2DeliveryItemConversionSpacer" text="{i18n>CONV_RATE_DIVIDER}" class="sapUiTinyMarginBeginEnd"/>
+									<Input id="S2DeliveryItemConversionRateFactor"
+										value="{parts:[{path:'SalesToBaseFactor'}, {path:'DeliveryQuantityBaseUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"
+										textAlign="Begin" editable="false"/>
+								</items>
+							</FlexBox>
+							<!-- Base Unit Delivery Quantity -->
+							<Label id="S2DeliveryQuantityInBaseLabel" text="{/#DeliveryItem/DeliveryQuantityInBaseUoM/@sap:label}"
+								tooltip="{/#DeliveryItem/DeliveryQuantityInBaseUoM/@sap:label}"/>
+							<Input id="S2DeliveryQuantityInBaseText" editable="false" app:UoMCodePath="DeliveryQuantityBaseUoMCode" app:ReadOnly="true"
+								value="{parts:[{path: 'DeliveryQuantityInBaseUoM'}, {path: 'DeliveryQuantityBaseUoMCode'}, {path: 'FieldControl>/InputEditable'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatBaseUnitDelivQuantity'}"/>
+							<mvc:Title text=""/>
+							<!-- Material -->
+							<Label id="S2DeliveryMaterialLabel" text="{/#DeliveryItem/MaterialID/@sap:label}" tooltip="{/#DeliveryItem/MaterialID/@sap:label}"/>
+							<Input id="S2DeliveryMaterialText" editable="false"
+								value="{parts:[{path:'ItemName'}, {path:'MaterialID'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateNameId'}"/>
+							<!-- Gross Weight -->
+							<Label id="S2DeliveryGrossWeightLabel" text="{/#DeliveryItem/ItemGrossWeightQuantity/@sap:label}"
+								tooltip="{/#DeliveryItem/ItemGrossWeightQuantity/@sap:label}"/>
+							<Input id="S2DeliveryGrossWeightText" editable="false"
+								value="{parts:[{path:'ItemGrossWeightQuantity'}, {path:'ItemGrossWeightUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+							<!-- Net Weight -->
+							<Label id="S2DeliveryNetWeightLabel" text="{/#DeliveryItem/ItemNetWeightQuantity/@sap:label}"
+								tooltip="{/#DeliveryItem/ItemNetWeightQuantity/@sap:label}"/>
+							<Input id="S2DeliveryNetWeightText" editable="false"
+								value="{parts:[{path:'ItemNetWeightQuantity'}, {path:'ItemGrossWeightUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+							<!-- Volume-->
+							<Label id="S2DeliveryVolumeLabel" text="{/#DeliveryItem/ItemVolumeQuantity/@sap:label}"
+								tooltip="{/#DeliveryItem/ItemVolumeQuantity/@sap:label}"/>
+							<Input id="S2DeliveryVolumeText" editable="false"
+								value="{parts:[{path:'ItemVolumeQuantity'}, {path:'ItemVolumeUoMCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateQuantityUoM'}"/>
+							<!-- Plant -->
+							<Label id="S2DeliveryPlantLabel" text="{/#DeliveryItem/PlantName/@sap:label}" tooltip="{/#DeliveryItem/PlantName/@sap:label}"/>
+							<Input id="S2DeliveryPlantText" editable="false"
+								value="{parts:[{path:'PlantName'}, {path:'PlantCode'}], formatter:'i2d.le.delivery.pick.s1.util.formatter.formatConcatenateNameId'}"/>
+							<!-- Storage Location -->
+							<Label id="S2DeliveryStorageLocationLabel" text="{/#DeliveryItem/StorageLocationName/@sap:label}"
+								tooltip="{/#DeliveryItem/StorageLocationName/@sap:label}"/>
+							<Input id="S2StorageLocationCodeInput" editable="{FieldControl>/InputEditable}" value="{StorageLocationCode}" showValueHelp="true"
+								change="handleStorageLocationChange" valueHelpRequest="onRegisterVHDialog"/>
+							<!-- Storage Location Description -->
+							<Label/>
+							<Input id="S2DeliveryStorageLocationText" editable="false" value="{StorageLocationName}"
+								ariaLabelledBy="S2DeliveryStorageLocationTextInvisibleText" tooltip="{i18n>LABEL_STORAGE_LOCATION_NAME}"/>
+							<mvc:InvisibleText id="S2DeliveryStorageLocationTextInvisibleText" text="{i18n>LABEL_STORAGE_LOCATION_NAME}"/>
+							<!-- Storage Bin -->
+							<Label id="S2StorageBinLabel" text="{/#DeliveryItem/StorageBin/@sap:label}" tooltip="{/#DeliveryItem/StorageBin/@sap:label}"/>
+							<Input id="S2StorageBinText" value="{StorageBin}" editable="false"/>
+							<!-- Material Availability -->
+							<Label id="S2DeliveryMaterialAvailabilityDateLabel" text="{/#DeliveryItem/MaterialAvailabilityDate/@sap:label}"
+								tooltip="{/#DeliveryItem/MaterialAvailabilityDate/@sap:label}"/>
+							<Input id="S2DeliveryMaterialAvailabilityDateText" editable="false"
+								value="{path:'MaterialAvailabilityDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium', UTC:true}}"/>
+							<!-- Extends the Simple Form to add additional content -->
+							<mvc:ExtensionPoint name="extS2SimpleFormBottom"/>
+						</layout:content>
+					</layout:form.SimpleForm>
+				</layout:content>
+			</layout:Grid>
+			<Table id="S2SerialNumberTable" updateFinished="onTableUpdateFinished" inset="true" width="auto" fixedLayout="false" showSeparators="Inner"
+				mode="MultiSelect" selectionChange="enableClearSelected" noDataText="{i18n>NO_SERIALNO_TEXT}" busyIndicatorDelay="10">
+				<headerToolbar>
+					<OverflowToolbar id="otbSubheader">
+						<Title text="{i18n>LABEL_SER_NUM_TABLE}" level="H2" tooltip="{i18n>LABEL_SER_NUM_TABLE}"/>
+						<ToolbarSpacer/>
+						<Button id="massSelectButton" text="{i18n>LABEL_MASS_SELECT_BUTTON}" tooltip="{i18n>LABEL_MASS_SELECT_BUTTON}" type="Transparent"
+							press="onSNMassSelect"/>
+						<!--<Button id="deleteButton"  type="Transparent" press="onSNDelete" text="Remove" enabled="{path: '/',formatter: '.formatter'}"/>-->
+						<Button id="removeSNButton" type="Transparent" press="onSNDelete" text="{i18n>LABEL_REMOVE_BUTTON}" tooltip="{i18n>LABEL_REMOVE_BUTTON}"
+							enabled="false"/>
+						<Button id="sortSNTableButton" type="Transparent" press="onSNSort" icon="sap-icon://sort"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="15em">
+						<Text text="{i18n>LABEL_SER_NUM}" tooltip="{i18n>LABEL_SER_NUM}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15em">
+						<Text text="{i18n>LABEL_EQUIPMENT_NUM}" tooltip="{i18n>LABEL_EQUIPMENT_NUM}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>LABEL_UII}" tooltip="{i18n>LABEL_UII}"/>
+					</Column>
+				</columns>
+				<!--<items>-->
+				<!--items bound at runtime in controller-->
+				<!--</items>-->
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

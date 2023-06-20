@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<!-- This extension point can be used to add fields to content -->
+	<!--<DatePicker xmlns="sap.m" id="ReverseGIDateDialogDatePicker_clone" placeholder="" change="handleReverseGIDateChange" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" app:ActualGI="{path:'GoodsIssueActualDate', type:'sap.ui.model.type.Date', formatOptions:{ style:'medium'}}">
+			</DatePicker> -->
+</core:FragmentDefinition>
